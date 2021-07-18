@@ -6,7 +6,9 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to book_path(@book)
     else
-      redirect_to book_path(@book)
+      @newbook = Book.new
+      @user = @book.user
+      render "books/show"
     end
   end
 
