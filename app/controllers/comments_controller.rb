@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.find_by(book_id: @book.id)
     @comment.destroy
     redirect_to book_path(@book)
+
   end
 
   private
