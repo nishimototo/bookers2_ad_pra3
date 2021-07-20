@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  impressionist :actions=> [:show]
+
   def index
     @books = Book.includes(:favorites).sort{|a,b| b.favorites.count <=> a.favorites.count}
     @book = Book.new
@@ -14,6 +16,7 @@ class BooksController < ApplicationController
     @user = @book.user
     @comment = Comment.new
     @comments = @book.comments
+    impressionist(@book, nil, unique: [:ip_address])
   end
 
   def edit
