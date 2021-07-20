@@ -20,7 +20,7 @@ class User < ApplicationRecord
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
 
-  has_many :groups_users
+  has_many :group_users
   has_many :groups, through: :group_users
 
   def followed_by?(user)
