@@ -1,8 +1,11 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    @books = Book.includes(:favorites).sort{|a,b| b.favorites.count <=> a.favorites.count}
     @book = Book.new
     @user = current_user
+    #from = Time.current.at_beginning_of_day
+    #to = (from + 6.day).at_end_of_day
+    #@books = Book.joins(:favorites).where(favorites: {created_at: from...to}).group(:id).order("count(*) desc")
   end
 
   def show
