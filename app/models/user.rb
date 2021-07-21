@@ -25,7 +25,7 @@ class User < ApplicationRecord
 
   def followed_by?(user)
     passive_relationships.where(following_id: user.id).exists?
-  end
+  end  
 
   def self.looks(word, search)
     if search == "perfect_match"
